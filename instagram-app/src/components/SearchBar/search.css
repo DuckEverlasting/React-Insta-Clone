@@ -1,0 +1,56 @@
+.search-bar {
+  height: 40px;
+  margin: 15px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.search-bar .logo-box {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  width: 30%;
+}
+
+.search-bar .logo-box i {
+  font-size: 1.8rem;
+  padding-right: 10px;
+  margin-right: 5px;
+  border-right: 2px solid black;
+}
+
+.search-bar .logo-box .instagram-logo {
+  height: 100%;
+}
+
+.search-bar .input-box {
+  position: relative;
+  width: 20%;
+}
+
+.search-bar .input-box .search-input {
+  width: 100%;
+  text-align: left;
+  padding: 5px 20px;
+}
+
+.search-bar .input-box i {
+  position: absolute;
+  color: grey;
+  left: 5px;
+  top: 9px;
+  font-size: .8rem;
+}
+
+.search-bar .icon-box {
+  width: 30%;
+  text-align: end;
+  margin-top: 3px;
+}
+
+.search-bar .icon-box i {
+  color: rgb(54, 54, 54);
+  font-size: 1.4rem;
+  padding-left: 20px;
+}
