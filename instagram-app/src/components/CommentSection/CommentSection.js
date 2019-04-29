@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from "prop-types";
 import moment from 'moment'
 import Comment from './Comment'
 import './comment.css'
@@ -11,6 +12,11 @@ const CommentSection = (props) => {
       <input className="add-comment-box" type="text" placeholder="Add a comment..."/>
     </div>
   )
+}
+
+CommentSection.propTypes = {
+  comments: PropTypes.arrayOf(PropTypes.object).isRequired,
+  timestamp: PropTypes.string.isRequired
 }
 
 export default CommentSection;
