@@ -32,3 +32,11 @@
 .comment-section .add-comment-box:focus {
   outline: none;
 }
+
+.delete-button {
+  display: none;
+}
+
+.delete-button.visible {
+  display: block;
+}

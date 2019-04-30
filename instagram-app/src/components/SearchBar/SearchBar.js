@@ -1,7 +1,8 @@
 import React from "react";
+import PropTypes from "prop-types";
 import "./search.css";
 
-const SearchBar = () => {
+const SearchBar = (props) => {
   return (
     <div className="search-bar">
       <div className="logo-box">
@@ -9,11 +10,15 @@ const SearchBar = () => {
         <img className="instagram-logo" src="./img/Instagram_logo.png" alt="" />
       </div>
       <div className="input-box">
-        <input
-          className="search-input"
-          type="text"
-          placeholder="Search"
-        />
+        <form onSubmit={props.searchSubmit} action="">
+          <input
+            className="search-input"
+            type="text"
+            placeholder="Search"
+            value={props.searchInput}
+            onChange={props.searchChangeHandler}
+          />
+        </form>
         <i className="fas fa-search"></i>
       </div>
       <div className="icon-box">
@@ -23,6 +28,12 @@ const SearchBar = () => {
       </div>
     </div>
   );
+};
+
+SearchBar.propTypes = {
+  searchSubmit: PropTypes.func.isRequired,
+  searchInput: PropTypes.string.isRequired,
+  searchChangeHandler: PropTypes.func.isRequired
 };
 
 export default SearchBar;

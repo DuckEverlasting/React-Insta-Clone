@@ -1,4 +1,5 @@
 import React from "react";
+import ls from "local-storage";
 import PropTypes from "prop-types";
 import moment from "moment";
 import Comment from "./Comment";
@@ -14,6 +15,14 @@ class CommentSection extends React.Component {
     };
   }
 
+  componentDidMount() {
+    this.setState({
+      comments:
+        ls.get(`comments_${this.props.username}_${this.props.id}`) ||
+        this.state.comments
+    });
+  }
+
   handleInputChanges = ev => {
     this.setState({
       newInput: ev.target.value
@@ -25,20 +34,24 @@ class CommentSection extends React.Component {
     if (this.state.newInput === "") {
       return;
     }
+    console.log(this.props.currentUser);
     const currentUser = this.props.currentUser;
     const text = this.state.newInput;
+    ls.set(`comments_${this.props.username}_${this.props.id}`, [
+      ...this.state.comments,
+      { username: currentUser, text: text }
+    ]);
     this.setState({
       comments: [...this.state.comments, { username: currentUser, text: text }],
       newInput: ""
     });
-    console.log(this.state);
   };
 
   render() {
     return (
       <div className="comment-section">
         {this.state.comments.map((el, i) => (
-          <Comment data-id={i} username={el.username} text={el.text} />
+          <Comment data-id={i} username={el.username} text={el.text} currentUser={this.props.username} />
         ))}
         <p className="timestamp">
           {moment(this.props.timestamp, "MMMM Do YYYY, hh:mm:ss a").fromNow()}

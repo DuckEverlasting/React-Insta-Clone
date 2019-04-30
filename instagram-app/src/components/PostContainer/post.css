@@ -42,3 +42,13 @@
 .post .interact-section h2 {
   margin: 0;
 }
+
+.sorry {
+  display: none;
+  text-align: center;
+  margin-top: 50px;
+}
+
+.sorry.empty{
+  display: block;
+}

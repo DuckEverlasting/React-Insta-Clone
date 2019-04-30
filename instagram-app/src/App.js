@@ -9,24 +9,58 @@ class App extends React.Component {
     super();
     this.state = {
       data: [],
-      currentUser: "DuckEverlasting"
+      filteredData: [],
+      currentUser: "DuckEverlasting",
+      searchInput: ""
     };
   }
 
   componentDidMount() {
     this.setState({
-      data: dummyData
+      data: dummyData,
+      filteredData: dummyData
     });
   }
 
+  searchChangeHandler = ev => {
+    this.setState({
+      searchInput: ev.target.value
+    });
+  };
+
+  filterData = (el) => {
+    if (this.state.searchInput === "") {return true}
+    return (el.username === this.state.searchInput)
+  }
+
+  searchSubmit = ev => {
+    ev.preventDefault();
+    this.setState({
+      filteredData: this.state.data.filter(this.filterData),
+      searchInput: ""
+    })
+  };
+
+  emptyHandler = () => {
+    if (this.state.filteredData.length === 0) {
+      return ("sorry empty")
+    } else {
+      return ("sorry")
+    }
+  }
+
   render() {
-    console.log("APP STATE", this.state)
     return (
       <div className="App">
-        <SearchBar />
+        <SearchBar
+          searchInput={this.state.searchInput}
+          searchSubmit={this.searchSubmit}
+          searchChangeHandler={this.searchChangeHandler}
+        />
         <PostContainer
-          data={this.state.data}
+          data={this.state.filteredData}
           currentUser={this.state.currentUser}
+          emptyHandler={this.emptyHandler}
         />
       </div>
     );
