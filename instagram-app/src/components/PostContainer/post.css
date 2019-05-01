@@ -1,4 +1,4 @@
-.post {
+.post-container {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -24,8 +24,11 @@
 }
 
 .post .interact-section{
-  width: 100%;
-  margin: 15px 0 15px 2%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 60px;
+  margin: 15px 0 0 2%;
 }
 
 .post .interact-section i {
@@ -39,8 +42,23 @@
   transform: scale(-1, 1);
 }
 
-.post .interact-section h2 {
-  margin: 0;
+.post .interact-section .far.fa-comment.reverse {
+  font-size: 150%;
+}
+
+.post .interact-section .far.fa-heart {
+  margin-left: 1px;
+  transition: font-size .1s;
+}
+
+.post .interact-section .fas.fa-heart {
+  color: red;
+  font-size: 150%;
+  transition: font-size .1s;
+}
+
+.post .likes-number {
+  margin: 0 0 15px 2%;
 }
 
 .sorry {
@@ -49,6 +67,6 @@
   margin-top: 50px;
 }
 
-.sorry.empty{
+.sorry.empty {
   display: block;
 }

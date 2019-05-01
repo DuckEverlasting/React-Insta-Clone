@@ -2,7 +2,6 @@ import React from "react";
 import "./comment.css";
 
 const deleteClassHandler = (props) => {
-  console.log(props.currentUser)
   if (props.username === props.currentUser) {
     return "delete-button visible"
   } else {
@@ -12,10 +11,10 @@ const deleteClassHandler = (props) => {
 
 const CommentSection = props => {
   return (
-    <div className="comment">
+    <div className="comment" key={props.id}>
       <h2>{props.username}</h2>
       <p>{props.text}</p>
-      <button className={deleteClassHandler(props)}>delete</button>
+      <button className={deleteClassHandler(props)} onClick={props.deleteComment} >delete</button>
     </div>
   );
 };

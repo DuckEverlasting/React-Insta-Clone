@@ -11,15 +11,15 @@ class CommentSection extends React.Component {
     super(props);
     this.state = {
       newInput: "",
-      comments: this.props.comments
+      comments: this.props.comments,
+      // timestamp: this.props.timestamp
     };
   }
 
   componentDidMount() {
     this.setState({
-      comments:
-        ls.get(`comments_${this.props.username}_${this.props.id}`) ||
-        this.state.comments
+      comments: ls.get(`comments_${this.props.id}`) || this.state.comments,
+      // timestamp: ls.get(`last-comment_${this.props.id}`) || this.state.timestamp
     });
   }
 
@@ -34,30 +34,53 @@ class CommentSection extends React.Component {
     if (this.state.newInput === "") {
       return;
     }
-    console.log(this.props.currentUser);
     const currentUser = this.props.currentUser;
     const text = this.state.newInput;
-    ls.set(`comments_${this.props.username}_${this.props.id}`, [
+    // const freshTimestamp = moment().format("MMMM Do YYYY, hh:mm:ss a");
+    ls.set(`comments_${this.props.id}`, [
       ...this.state.comments,
       { username: currentUser, text: text }
     ]);
+    // ls.set(`last-comment_${this.props.id}`, freshTimestamp);
     this.setState({
-      comments: [...this.state.comments, { username: currentUser, text: text }],
-      newInput: ""
+      newInput: "",
+      comments: [
+        ...this.state.comments,
+        { username: currentUser, text: text }
+      ],
+      // timestamp: freshTimestamp
+    });
+  };
+
+  deleteComment = i => {
+    const newComments = this.state.comments
+      .slice(0, i)
+      .concat(this.state.comments.slice(i + 1, this.state.comments.length));
+    ls.set(`comments_${this.props.id}`, newComments)
+    this.setState({
+      comments: newComments
     });
   };
 
   render() {
     return (
-      <div className="comment-section">
+      <div key={this.props.id} className="comment-section">
         {this.state.comments.map((el, i) => (
-          <Comment data-id={i} username={el.username} text={el.text} currentUser={this.props.username} />
+          <Comment
+            key={`${this.props.id}_${i}`}
+            username={el.username}
+            text={el.text}
+            currentUser={this.props.currentUser}
+            deleteComment={() => this.deleteComment(i)}
+          />
         ))}
         <p className="timestamp">
+          {/* TO CHANGE TIMESTAMP TO LAST COMMENT, SWITCH 
+          PROPS TO STATE HERE AND UNCOMMENT CODE ABOVE */}
           {moment(this.props.timestamp, "MMMM Do YYYY, hh:mm:ss a").fromNow()}
         </p>
         <NewCommentBox
-          data-id={this.props.id}
+          key={`${this.props.id}_new-comment-box`}
           newInput={this.state.newInput}
           handleInputChanges={this.handleInputChanges}
           addNewComment={this.addNewComment}

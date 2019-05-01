@@ -35,8 +35,12 @@
 
 .delete-button {
   display: none;
+  margin-left: 10px;
+  background: white;
+  font-size: .75rem;
+  border-radius: 20px;
 }
 
 .delete-button.visible {
-  display: block;
+  display: inline-block;
 }
