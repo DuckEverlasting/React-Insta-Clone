@@ -4,20 +4,22 @@ import Post from "./Post";
 import CommentSection from "../CommentSection/CommentSection"
 import "./post.css";
 
+
+
 const PostContainer = props => {
   return (
     <div>
       {props.data.map((el) => (
         <div className="post-container">
           <Post
-          key={el.timestamp}
-          id={el.timestamp}
-          thumbnailUrl={el.thumbnailUrl}
-          username={el.username}
-          imageUrl={el.imageUrl}
-          likes={el.likes}
-          currentUser={props.currentUser}
-        />
+            key={el.timestamp}
+            id={el.timestamp}
+            thumbnailUrl={el.thumbnailUrl}
+            username={el.username}
+            imageUrl={el.imageUrl}
+            likes={el.likes}
+            currentUser={props.currentUser}
+          />
           <CommentSection
             key={`${el.timestamp}_comments`}
             id={el.timestamp}

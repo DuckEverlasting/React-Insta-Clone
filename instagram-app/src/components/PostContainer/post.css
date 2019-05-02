@@ -12,60 +12,6 @@
   margin: 105px 0 50px;
 }
 
-.post header {
-  display: flex;
-  align-items: center;
-  width: 100%;
-}
-
-.post header .thumb {
-  height: 30px;
-  margin: 0 10px 0 2%;
-  border-radius: 50%;
-}
-
-.post .image {
-  width: 100%;
-}
-
-.post .interact-section{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 60px;
-  margin: 15px 0 0 2%;
-}
-
-.post .interact-section i {
-  color: rgb(54, 54, 54);
-  font-size: 1.4rem;
-  cursor: pointer;
-}
-
-.post .interact-section i.reverse {
-  padding-right: 10px;
-  transform: scale(-1, 1);
-}
-
-.post .interact-section .far.fa-comment.reverse {
-  font-size: 150%;
-}
-
-.post .interact-section .far.fa-heart {
-  margin-left: 1px;
-  transition: font-size .1s;
-}
-
-.post .interact-section .fas.fa-heart {
-  color: red;
-  font-size: 150%;
-  transition: font-size .1s;
-}
-
-.post .likes-number {
-  margin: 0 0 15px 2%;
-}
-
 .sorry {
   display: none;
   text-align: center;

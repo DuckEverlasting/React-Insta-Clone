@@ -4,7 +4,20 @@ import PropTypes from "../../../node_modules/prop-types";
 import moment from "../../../node_modules/moment/moment";
 import Comment from "./Comment";
 import NewCommentBox from "./NewCommentBox";
-import "./comment.css";
+import styled from "styled-components"
+
+// BEGIN STYLING
+
+const SCCommentSectionDiv = styled.div`
+  width: 96%;
+  margin: 0 2%;
+`
+const SCTimestamp = styled.div`
+  font-size: .8rem;
+  color: grey;
+`
+
+// END STYLING
 
 class CommentSection extends React.Component {
   constructor(props) {
@@ -64,7 +77,7 @@ class CommentSection extends React.Component {
 
   render() {
     return (
-      <div key={this.props.id} className="comment-section">
+      <SCCommentSectionDiv key={this.props.id}>
         {this.state.comments.map((el, i) => (
           <Comment
             key={`${this.props.id}_${i}`}
@@ -74,18 +87,18 @@ class CommentSection extends React.Component {
             deleteComment={() => this.deleteComment(i)}
           />
         ))}
-        <p className="timestamp">
+        <SCTimestamp>
           {/* TO CHANGE TIMESTAMP TO LAST COMMENT, SWITCH 
           PROPS TO STATE HERE AND UNCOMMENT CODE ABOVE */}
           {moment(this.props.timestamp, "MMMM Do YYYY, hh:mm:ss a").fromNow()}
-        </p>
+        </SCTimestamp>
         <NewCommentBox
           key={`${this.props.id}_new-comment-box`}
           newInput={this.state.newInput}
           handleInputChanges={this.handleInputChanges}
           addNewComment={this.addNewComment}
         />
-      </div>
+      </SCCommentSectionDiv>
     );
   }
 }

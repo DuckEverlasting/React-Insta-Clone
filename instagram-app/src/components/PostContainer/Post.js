@@ -1,7 +1,50 @@
 import React from "../../../node_modules/react";
 import ls from "local-storage";
 import PropTypes from "../../../node_modules/prop-types";
-import "./post.css";
+import styled from "styled-components"
+
+// BEGIN STYLING
+
+const SCHeader = styled.header`
+  display: flex;
+  align-items: center;
+  width: 100%;
+`
+const SCThumbnail = styled.img`
+  height: 30px;
+  margin: 0 10px 0 2%;
+  border-radius: 50%;
+`
+const SCImage = styled.img`
+  width: 100%;
+`
+const SCInteractSection = styled.div `
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 60px;
+  margin: 15px 0 0 2%;
+`
+const SCLikeIcon = styled.i`
+  color: ${props => props.styleHandler ? "rgb(54, 54, 54)" : "red"};
+  font-size: ${props => props.styleHandler ? "20px" : "22px"};
+  margin-left: 1px;
+  transition: font-size .1s;
+  cursor: pointer;
+`
+const SCCommentIcon = styled.i`
+  color: rgb(54, 54, 54);
+  font-size: 22px;
+  padding-right: 10px;
+  transform: scale(-1, 1);
+  cursor: pointer;
+`
+const SCLikesNumber = styled.h2`
+  margin: 0 0 15px 2%;
+`
+
+
+// END STYLING
 
 class Post extends React.Component {
   constructor(props) {
@@ -53,19 +96,23 @@ class Post extends React.Component {
     return output;
   }
 
+  likeStyleHandler = () => {
+    return (this.state.likedBy.indexOf(this.props.currentUser) === -1)
+  }
+
   render() {
     return (
       <div className="post">
-        <header>
-          <img className="thumb" src={this.props.thumbnailUrl} alt="" />
+        <SCHeader>
+          <SCThumbnail src={this.props.thumbnailUrl} alt="" />
           <h2>{this.props.username}</h2>
-        </header>
-        <img className="image" src={this.props.imageUrl} alt="" />
-        <div className="interact-section">
-          <i className={this.likeClassHandler()} onClick={this.addRemoveLike} />
-          <i className="far fa-comment reverse" />
-        </div>
-        <h2 className="likes-number">{this.state.likes} likes</h2>
+        </SCHeader>
+        <SCImage src={this.props.imageUrl} alt="" />
+        <SCInteractSection>
+          <SCLikeIcon styleHandler={this.likeStyleHandler()} className={this.likeClassHandler()} onClick={this.addRemoveLike} />
+          <SCCommentIcon className="far fa-comment" />
+        </SCInteractSection>
+        <SCLikesNumber >{this.state.likes} likes</SCLikesNumber>
       </div>
     );
   };

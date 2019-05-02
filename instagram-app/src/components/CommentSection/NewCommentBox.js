@@ -1,10 +1,22 @@
 import React from "../../../node_modules/react";
-import "./comment.css";
+import styled from "styled-components"
+
+// BEGIN STYLING
+
+const SCNewCommentInput = styled.input`
+  height: 2rem;
+  width: 100%;
+  border: none;
+  border-top: 1px solid darkgrey;
+  outline: none;
+`
+
+// END STYLING
 
 const NewCommentBox = props => {
   return (
     <form onSubmit={props.addNewComment} action="">
-      <input
+      <SCNewCommentInput
         className="add-comment-box"
         type="text"
         placeholder="Add a comment..."

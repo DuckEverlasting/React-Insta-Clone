@@ -1,33 +1,101 @@
 import React from "../../../node_modules/react";
 import PropTypes from "../../../node_modules/prop-types";
-import "./search.css";
+import styled from "styled-components"
+
+// BEGIN STYLING
+
+const SCHeader = styled.header`
+  background: white;
+  position: fixed;
+  left: 0;
+  width: 96%;
+  height: 40px;
+  padding: 18px 2%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgb(153, 153, 153);
+  z-index: 3;
+`
+const SCLogoBox = styled.div`
+  display: flex;
+  align-items: center;
+  height: 100%;
+  width: 30%;
+`
+const SCInputBox = styled.div`
+  position: relative;
+  width: 20%;
+`
+const SCInstagramIcon = styled.i`
+  font-size: 1.8rem;
+  padding-right: 10px;
+  margin-right: 5px;
+  border-right: 2px solid black;
+`
+const SCInstagramLogo = styled.img`
+height: 100%;
+`
+const SCSearchInput = styled.input`
+  width: 100%;
+  text-align: left;
+  padding: 5px 20px;
+`
+const SCSearchIcon = styled.i`
+  position: absolute;
+  color: grey;
+  left: 5px;
+  top: 9px;
+  font-size: .8rem;
+`
+const SCIconBox = styled.div`
+  width: 30%;
+  text-align: end;
+  margin-top: 3px;
+`
+const SCIcon = styled.i`
+  color: rgb(54, 54, 54);
+  font-size: 1.4rem;
+  padding-left: 20px;
+`
+const SCLogOutIcon = styled(SCIcon)`
+  cursor: pointer;
+`
+const SCLogOutText = styled.span`
+  position: absolute;
+  right: 1.55%;
+  bottom: 10%;
+  font-size: .6rem;
+  user-select: none;
+`
+
+// END STYLING
 
 const SearchBar = (props) => {
   return (
-    <div className="search-bar">
-      <div className="logo-box">
-        <i className="fab fa-instagram" />
-        <img className="instagram-logo" src="./img/Instagram_logo.png" alt="" />
-      </div>
-      <div className="input-box">
+    <SCHeader>
+      <SCLogoBox>
+        <SCInstagramIcon className="fab fa-instagram" />
+        <SCInstagramLogo src="./img/Instagram_logo.png" alt="" />
+      </SCLogoBox>
+      <SCInputBox>
         <form onSubmit={props.searchSubmit} action="">
-          <input
-            className="search-input"
+          <SCSearchInput
             type="text"
             placeholder="Search"
             value={props.searchInput}
             onChange={props.searchChangeHandler}
           />
         </form>
-        <i className="fas fa-search"></i>
-      </div>
-      <div className="icon-box">
-        <i className="far fa-compass" />
-        <i className="far fa-heart" />
-        <span>Log Out</span>
-        <i className="far fa-user" onClick={props.logOut}/>
-      </div>
-    </div>
+        <SCSearchIcon className="fas fa-search"></SCSearchIcon>
+      </SCInputBox>
+      <SCIconBox>
+        <SCIcon className="far fa-compass" />
+        <SCIcon className="far fa-heart" />
+        <SCLogOutText>Log Out</SCLogOutText>
+        <SCLogOutIcon className="far fa-user" onClick={props.logOut}/>
+      </SCIconBox>
+    </SCHeader>
   );
 };
 
