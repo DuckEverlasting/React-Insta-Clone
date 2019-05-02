@@ -6,11 +6,12 @@ import "./post.css";
 
 const PostContainer = props => {
   return (
-    <>
+    <div>
       {props.data.map((el) => (
         <div className="post-container">
           <Post
           key={el.timestamp}
+          id={el.timestamp}
           thumbnailUrl={el.thumbnailUrl}
           username={el.username}
           imageUrl={el.imageUrl}
@@ -18,7 +19,7 @@ const PostContainer = props => {
           currentUser={props.currentUser}
         />
           <CommentSection
-            key={el.timestamp}
+            key={`${el.timestamp}_comments`}
             id={el.timestamp}
             comments={el.comments}
             timestamp={el.timestamp}
@@ -30,7 +31,7 @@ const PostContainer = props => {
         We're sorry, there don't seem to be any posts by users
         of that name.
       </p>
-    </>
+    </div>
   );
 };
 

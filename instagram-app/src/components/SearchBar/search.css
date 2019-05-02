@@ -1,9 +1,15 @@
 .search-bar {
+  background: white;
+  position: fixed;
+  left: 0;
+  width: 96%;
   height: 40px;
-  margin: 15px 0;
+  padding: 18px 2%;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-bottom: 1px solid rgb(153, 153, 153);
+  z-index: 3;
 }
 
 .search-bar .logo-box {
@@ -53,4 +59,8 @@
   color: rgb(54, 54, 54);
   font-size: 1.4rem;
   padding-left: 20px;
+}
+
+.search-bar .icon-box i.far.fa-user {
+  cursor: pointer;
 }

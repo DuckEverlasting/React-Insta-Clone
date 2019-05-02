@@ -1,4 +1,5 @@
 import React from "react";
+import ls from "local-storage";
 import "./post.css";
 import SearchBar from "../SearchBar/SearchBar";
 import PostContainer from "./PostContainer";
@@ -10,15 +11,20 @@ class PostPage extends React.Component {
     this.state = {
       data: [],
       filteredData: [],
-      currentUser: "DuckEverlasting",
+      currentUser: "",
       searchInput: ""
     };
   }
 
   componentDidMount() {
+    let user;
+    ls("current-user")
+      ? (user = ls.get("current-user").username)
+      : (user = "SOMETHING IS WRONG");
     this.setState({
       data: dummyData,
-      filteredData: dummyData
+      filteredData: dummyData,
+      currentUser: user
     });
   }
 
@@ -28,34 +34,45 @@ class PostPage extends React.Component {
     });
   };
 
-  filterData = (el) => {
-    if (this.state.searchInput === "") {return true}
-    return (el.username === this.state.searchInput)
-  }
+  filterData = el => {
+    if (this.state.searchInput === "") {
+      return true;
+    }
+    return el.username === this.state.searchInput;
+  };
 
   searchSubmit = ev => {
     ev.preventDefault();
+    const newFilteredData = this.state.data.filter(this.filterData);
+    console.log(newFilteredData);
     this.setState({
-      filteredData: this.state.data.filter(this.filterData),
+      filteredData: newFilteredData,
       searchInput: ""
-    })
+    });
   };
 
   emptyHandler = () => {
     if (this.state.filteredData.length === 0) {
-      return ("sorry empty")
+      return "sorry empty";
     } else {
-      return ("sorry")
+      return "sorry";
     }
+  };
+
+  logOut = () => {
+    ls.remove("current-user");
+    window.location.reload();
   }
 
   render() {
     return (
       <>
         <SearchBar
+          className="post-page"
           searchInput={this.state.searchInput}
           searchSubmit={this.searchSubmit}
           searchChangeHandler={this.searchChangeHandler}
+          logOut={this.logOut}
         />
         <PostContainer
           data={this.state.filteredData}

@@ -24,7 +24,7 @@ const SearchBar = (props) => {
       <div className="icon-box">
         <i className="far fa-compass" />
         <i className="far fa-heart" />
-        <i className="far fa-user" />
+        <i className="far fa-user" onClick={props.logOut}/>
       </div>
     </div>
   );
