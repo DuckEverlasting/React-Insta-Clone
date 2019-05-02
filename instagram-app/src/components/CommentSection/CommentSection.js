@@ -15,6 +15,7 @@ const SCCommentSectionDiv = styled.div`
 const SCTimestamp = styled.div`
   font-size: .8rem;
   color: grey;
+  margin-bottom: 10px;
 `
 
 // END STYLING
@@ -24,6 +25,7 @@ class CommentSection extends React.Component {
     super(props);
     this.state = {
       newInput: "",
+      newInputHeight: 18,
       comments: this.props.comments,
       // timestamp: this.props.timestamp
     };
@@ -38,7 +40,8 @@ class CommentSection extends React.Component {
 
   handleInputChanges = ev => {
     this.setState({
-      newInput: ev.target.value
+      newInput: ev.target.value,
+      newInputHeight: ev.target.scrollHeight,
     });
   };
 
@@ -77,28 +80,31 @@ class CommentSection extends React.Component {
 
   render() {
     return (
-      <SCCommentSectionDiv key={this.props.id}>
-        {this.state.comments.map((el, i) => (
-          <Comment
-            key={`${this.props.id}_${i}`}
-            username={el.username}
-            text={el.text}
-            currentUser={this.props.currentUser}
-            deleteComment={() => this.deleteComment(i)}
-          />
-        ))}
-        <SCTimestamp>
-          {/* TO CHANGE TIMESTAMP TO LAST COMMENT, SWITCH 
-          PROPS TO STATE HERE AND UNCOMMENT CODE ABOVE */}
-          {moment(this.props.timestamp, "MMMM Do YYYY, hh:mm:ss a").fromNow()}
-        </SCTimestamp>
+      <>
+        <SCCommentSectionDiv key={this.props.id}>
+          {this.state.comments.map((el, i) => (
+            <Comment
+              key={`${this.props.id}_${i}`}
+              username={el.username}
+              text={el.text}
+              currentUser={this.props.currentUser}
+              deleteComment={() => this.deleteComment(i)}
+            />
+          ))}
+          <SCTimestamp>
+            {/* TO CHANGE TIMESTAMP TO LAST COMMENT, SWITCH 
+            PROPS TO STATE HERE AND UNCOMMENT CODE ABOVE */}
+            {moment(this.props.timestamp, "MMMM Do YYYY, hh:mm:ss a").fromNow()}
+          </SCTimestamp>
+        </SCCommentSectionDiv>
         <NewCommentBox
-          key={`${this.props.id}_new-comment-box`}
-          newInput={this.state.newInput}
-          handleInputChanges={this.handleInputChanges}
-          addNewComment={this.addNewComment}
+            key={`${this.props.id}_new-comment-box`}
+            newInput={this.state.newInput}
+            handleInputChanges={this.handleInputChanges}
+            addNewComment={this.addNewComment}
+            height={this.state.newInputHeight}
         />
-      </SCCommentSectionDiv>
+      </>
     );
   }
 }

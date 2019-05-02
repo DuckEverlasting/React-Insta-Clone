@@ -5,6 +5,7 @@ import styled from "styled-components";
 
 const SCComment = styled.div`
   margin-bottom: 10px;
+  overflow-wrap: break-word;
 `
 const SCUsername = styled.h2`
   display: inline;
@@ -21,6 +22,7 @@ const SCDeleteButton = styled.button`
   background: white;
   font-size: 0.75rem;
   border-radius: 20px;
+  outline: none;
 `
 
 //END STYLING

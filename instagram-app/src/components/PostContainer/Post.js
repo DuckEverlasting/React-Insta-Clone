@@ -51,7 +51,8 @@ class Post extends React.Component {
     super(props);
     this.state = {
       likes: 0,
-      likedBy: []
+      likedBy: [],
+      newCommentOpen: false
     }
   }
 

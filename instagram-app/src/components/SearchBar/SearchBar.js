@@ -2,8 +2,6 @@ import React from "../../../node_modules/react";
 import PropTypes from "../../../node_modules/prop-types";
 import styled from "styled-components"
 
-// BEGIN STYLING
-
 const SCHeader = styled.header`
   background: white;
   position: fixed;
@@ -68,8 +66,6 @@ const SCLogOutText = styled.span`
   font-size: .6rem;
   user-select: none;
 `
-
-// END STYLING
 
 const SearchBar = (props) => {
   return (
