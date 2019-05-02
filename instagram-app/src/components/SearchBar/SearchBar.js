@@ -1,5 +1,5 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from "../../../node_modules/react";
+import PropTypes from "../../../node_modules/prop-types";
 import "./search.css";
 
 const SearchBar = (props) => {
@@ -24,6 +24,7 @@ const SearchBar = (props) => {
       <div className="icon-box">
         <i className="far fa-compass" />
         <i className="far fa-heart" />
+        <span>Log Out</span>
         <i className="far fa-user" onClick={props.logOut}/>
       </div>
     </div>

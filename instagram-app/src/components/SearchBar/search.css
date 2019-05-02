@@ -56,9 +56,18 @@
 }
 
 .search-bar .icon-box i {
+  position: relative;
   color: rgb(54, 54, 54);
   font-size: 1.4rem;
   padding-left: 20px;
+}
+
+.search-bar .icon-box span {
+  position: absolute;
+  right: 1.55%;
+  bottom: 10%;
+  font-size: .6rem;
+  user-select: none;
 }
 
 .search-bar .icon-box i.far.fa-user {

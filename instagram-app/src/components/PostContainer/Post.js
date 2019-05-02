@@ -1,6 +1,6 @@
-import React from "react";
+import React from "../../../node_modules/react";
 import ls from "local-storage";
-import PropTypes from "prop-types";
+import PropTypes from "../../../node_modules/prop-types";
 import "./post.css";
 
 class Post extends React.Component {

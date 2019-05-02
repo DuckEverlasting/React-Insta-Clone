@@ -1,7 +1,7 @@
-import React from "react";
+import React from "../../../node_modules/react";
 import ls from "local-storage";
-import PropTypes from "prop-types";
-import moment from "moment";
+import PropTypes from "../../../node_modules/prop-types";
+import moment from "../../../node_modules/moment/moment";
 import Comment from "./Comment";
 import NewCommentBox from "./NewCommentBox";
 import "./comment.css";

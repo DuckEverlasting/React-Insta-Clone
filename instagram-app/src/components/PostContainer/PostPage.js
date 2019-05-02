@@ -1,4 +1,4 @@
-import React from "react";
+import React from "../../../node_modules/react";
 import ls from "local-storage";
 import "./post.css";
 import SearchBar from "../SearchBar/SearchBar";

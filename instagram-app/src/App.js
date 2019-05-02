@@ -1,4 +1,4 @@
-import React from "react";
+import React from "../node_modules/react";
 import "./App.css";
 import PostPage from "./components/PostContainer/PostPage";
 import withAuthenticate from "./authentication/withAuthenticate";
