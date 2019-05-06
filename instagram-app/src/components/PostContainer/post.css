@@ -1,0 +1,22 @@
+.post-container {
+  background: white;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 5px 0 50px;
+  border: 1px solid rgb(192, 192, 192);
+}
+
+.post-container:first-child {
+  margin: 105px 0 50px;
+}
+
+.sorry {
+  display: none;
+  text-align: center;
+  margin-top: 120px;
+}
+
+.sorry.empty {
+  display: block;
+}
